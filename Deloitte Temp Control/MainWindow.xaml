@@ -1,0 +1,49 @@
+﻿<Window x:Class="Deloitte_Temp_Control.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Deloitte_Temp_Control"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowState="Maximized">
+    <Grid MouseEnter="Grid_MouseEnter"  >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Name="RobotOneName" Content="MiR 1" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30"/>
+        <Label Name="RobotTwoName" Content="MiR 2" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30"/>
+        <Label Name="RobotThreeName" Content="MiR 3" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30"/>
+        <Label Name="RobotFourName" Content="MiR 4" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30"/>
+        <Label Name="RobotFiveName" Content="MiR 5" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30"/>
+
+        <Label Name="RobotOneB" Content="Battery:" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25"/>
+        <Label Name="RobotTwoB" Content="Battery:" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25"/>
+        <Label Name="RobotThreeB" Content="Battery:" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25"/>
+        <Label Name="RobotFourB" Content="Battery:" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25"/>
+        <Label Name="RobotFiveB" Content="Battery:" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25"/>
+
+        <Label Name="RobotOneR" Content="Run:" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Grid.Column="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="25"/>
+        <Label Name="RobotTwoR" Content="Run:" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Grid.Column="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="25"/>
+        <Label Name="RobotThreeR" Content="Run:" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Grid.Column="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="25"/>
+        <Label Name="RobotFourR" Content="Run:" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Grid.Column="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="25"/>
+        <Label Name="RobotFiveR" Content="Run:" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Grid.Column="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="25"/>
+
+        <CheckBox Name ="RobotOneRun" Content="" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="RobotOneRun_Checked"/>
+        <CheckBox Name ="RobotTwoRun" Content="" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="RobotTwoRun_Checked"/>
+        <CheckBox Name ="RobotThreeRun" Content="" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="RobotThreeRun_Checked"/>
+        <CheckBox Name ="RobotFourRun" Content="" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="RobotFourRun_Checked"/>
+        <CheckBox Name ="RobotFiveRun" Content="" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="RobotFiveRun_Checked"/>
+
+        <Button Name="Refresh" Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="4" Grid.Column="0" Click="Refresh_Click"/>
+    </Grid>
+</Window>
