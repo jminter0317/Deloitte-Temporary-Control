@@ -36,6 +36,7 @@ namespace Deloitte_Temp_Control
 			Charger = 0;
 			lineTask = false;
 			chargingTask = false;
+			this.runOnce = false;
         }
 		public Robot(string _IPAddress)
 		{
@@ -49,8 +50,9 @@ namespace Deloitte_Temp_Control
 			this.IPAddress = _IPAddress;
 			this.run = false;
 			this.connection = new MiRConnection("distributor", "distributor", this.IPAddress);
-			lineTask = false;
-			chargingTask = false;
+			this.lineTask = false;
+			this.runOnce = false;
+			this.chargingTask = false;
 		}
 		public MiRLibWpf.MiRConnection connection;
 		public string RobotName { get; set; }
@@ -62,7 +64,7 @@ namespace Deloitte_Temp_Control
 		public int Charger { get; set; }
 		public string IPAddress { get; set; }
 		public bool run { get; set; }
-
+		public bool runOnce { get; set; }
 		public bool lineTask { get; set; }
 		public bool chargingTask { get; set; }
 	}

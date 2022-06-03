@@ -42,7 +42,7 @@ namespace Deloitte_Temp_Control
 
         //user parameters set in the UI
         //amount of seconds between starting robot motion tasks
-        public static int Interval = 5;
+        public static int Interval = 30;
         //amount of time the robot will wait at the holding position and at the conveyer
         public static int WaitTime = 15;
         //minimum battery the robot must have before going to the holding position and the line
@@ -57,15 +57,68 @@ namespace Deloitte_Temp_Control
             //create the list of robots
             robots = PopulateRobots();
 
-            Task monitor = new Task(() => RobotMonitor());
-            monitor.Start();
+            Task iMonitor = new Task(() => InactiveRobotMonitor());
+            iMonitor.Start();
+
+            Task aMonitor = new Task(() => ActiveRobotMonitor());
+            aMonitor.Start();
+        }
+        public static void InactiveRobotMonitor()
+        {
+            while(true)
+            {
+                List<int> inactiveRobots = new List<int>();
+                for (int i = 0; i < robots.Count; i++)
+                {
+                    if (!robots[i].run)
+                    {
+                        inactiveRobots.Add(i);
+                    }
+                }
+
+                foreach(int i in inactiveRobots)
+                {
+                    try
+                    {
+                        //try to get the info from the robot
+                        RobStatus status = robots[i].connection.GetRobStatus();
+                        robots[i].RobotName = status.robName;
+                        robots[i].BatteryPercentage = (double)status.battery;
+                        robots[i].MissionText = robots[i].MissionText;
+                        robots[i].MissionQueue = robots[i].connection.getMissionsInQueue().Length;
+
+                        if (!robots[i].lineTask && !robots[i].chargingTask && !robots[i].runOnce)
+                        {
+                            Task ChargingTask = new Task(() => RobotChargeTask(i));
+                            ChargingTask.Start();
+                            robots[i].runOnce = true;
+                        }
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+
+                    Thread.Sleep(Interval * 1000);
+
+                }      
+            }
         }
 
-        public static void RobotMonitor()
+        public static void ActiveRobotMonitor()
         {
             while (true)
             {
+                List<int> ActiveRobots = new List<int>();
                 for (int i = 0; i < robots.Count; i++)
+                {
+                    if (robots[i].run)
+                    {
+                        ActiveRobots.Add(i);
+                    }
+                }
+
+                foreach(int i in ActiveRobots)
                 {
                     try
                     {
@@ -78,6 +131,7 @@ namespace Deloitte_Temp_Control
 
                         if (robots[i].BatteryPercentage > MinimumBattery && robots[i].run)
                         {
+                            robots[i].runOnce = false;
                             if (!robots[i].lineTask && !robots[i].chargingTask)
                             {
                                 Task lineTask = new Task(() => RobotLineTask(i));
@@ -85,12 +139,13 @@ namespace Deloitte_Temp_Control
                             }
 
                         }
-                        else if (!status.missionText.Contains("Charging") && !status.missionText.Contains("measurements"))
+                        else 
                         {
-                            if (!robots[i].lineTask && !robots[i].chargingTask)
+                            if (!robots[i].lineTask && !robots[i].chargingTask && !robots[i].runOnce)
                             {
                                 Task ChargingTask = new Task(() => RobotChargeTask(i));
                                 ChargingTask.Start();
+                                robots[i].runOnce = true;
                             }
                         }
 
@@ -149,8 +204,8 @@ namespace Deloitte_Temp_Control
 
             //charger names
             chargers.Add(1, "ChargingStation1");
-            chargers.Add(2, "ChargingStation2");
-            chargers.Add(3, "ChargingStation3");
+            chargers.Add(2, "ChargingStation3");
+            chargers.Add(3, "ChargingStation2");
             chargers.Add(4, "ChargingStation4");
             chargers.Add(5, "ChargingStation5");
 
@@ -200,7 +255,7 @@ namespace Deloitte_Temp_Control
             missions.TryGetValue(MissionType.Charging, out missionName);
 
             //append the mission to the robot to send it to the charger
-            string[,] args = { { "Charger", chargerName } };
+            string[,] args = { { "Charger" , chargerName } };
 
             //take that dock so no one else can
             robots[index].Dock = 0;
@@ -208,7 +263,7 @@ namespace Deloitte_Temp_Control
             robots[index].Charger = chargerKey;
             robots[index].connection.AppendMissionToQueue(missionName, true, true, args, true);
 
-            robots[index].chargingTask = true;
+            robots[index].chargingTask = false;
         }
         //loop every set amount of time
         //if a robot is doing nothing and the battery percentage is above the slider amount
@@ -241,8 +296,8 @@ namespace Deloitte_Temp_Control
             missions.TryGetValue(MissionType.Holding, out holdingMission);
 
             //append the mission to the  queue
-            string[,] args = { { "Position", holdingName } };
-            robots[index].connection.AppendMissionToQueue(holdingMission);
+            string[,] args = { { "Position" , holdingName } };
+            robots[index].connection.AppendMissionToQueue(holdingMission, true, true, args, true);
 
             WaitForQueueZero(index);
         }
@@ -269,8 +324,8 @@ namespace Deloitte_Temp_Control
             missions.TryGetValue(MissionType.Line, out dockMission);
 
             //append the mission to the  queue
-            string[,] args = { { "Position", dockName } };
-            robots[index].connection.AppendMissionToQueue(dockMission);
+            string[,] args = { { "Position" , dockName } };
+            robots[index].connection.AppendMissionToQueue(dockMission, true, true, args, true);
 
             WaitForQueueZero(index);
         }

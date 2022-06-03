@@ -38,11 +38,11 @@
         <Label Name="RobotFourR" Content="Run:" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Grid.Column="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="25"/>
         <Label Name="RobotFiveR" Content="Run:" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Grid.Column="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="25"/>
 
-        <CheckBox Name ="RobotOneRun" Content="" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="RobotOneRun_Checked"/>
-        <CheckBox Name ="RobotTwoRun" Content="" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="RobotTwoRun_Checked"/>
-        <CheckBox Name ="RobotThreeRun" Content="" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="RobotThreeRun_Checked"/>
-        <CheckBox Name ="RobotFourRun" Content="" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="RobotFourRun_Checked"/>
-        <CheckBox Name ="RobotFiveRun" Content="" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="RobotFiveRun_Checked"/>
+        <CheckBox Name ="RobotOneRun" Content="" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="RobotOneRun_Checked"/>
+        <CheckBox Name ="RobotTwoRun" Content="" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="RobotTwoRun_Checked"/>
+        <CheckBox Name ="RobotThreeRun" Content="" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="RobotThreeRun_Checked"/>
+        <CheckBox Name ="RobotFourRun" Content="" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="RobotFourRun_Checked"/>
+        <CheckBox Name ="RobotFiveRun" Content="" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="RobotFiveRun_Checked"/>
 
         <Button Name="Refresh" Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="4" Grid.Column="0" Click="Refresh_Click"/>
     </Grid>
